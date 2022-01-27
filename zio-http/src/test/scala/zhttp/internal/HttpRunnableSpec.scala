@@ -15,7 +15,7 @@ import zhttp.service.client.ClientSSLHandler.ClientSSLOptions
 import zio.test.DefaultRunnableSpec
 import zio.{Has, Task, UIO, ZIO, ZManaged}
 
-import scala.jdk.CollectionConverters.CollectionHasAsScala
+import scala.jdk.CollectionConverters._
 
 /**
  * Should be used only when e2e tests needs to be written. Typically we would want to do that when we want to test the
