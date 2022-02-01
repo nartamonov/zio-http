@@ -139,8 +139,8 @@ object Server {
     acceptContinue: Boolean = false,
     keepAlive: Boolean = false,
     consolidateFlush: Boolean = false,
-    flowControl: Boolean = false,
     allocator: Option[PooledByteBufAllocator] = None,
+    flowControl: Boolean = true,
   )
 
   /**
