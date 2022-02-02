@@ -36,12 +36,15 @@ object ServerSpec extends HttpRunnableSpec {
     case _ -> !! / "HExitFailure" => Response.fromHttpError(HttpError.BadRequest())
   }
 
-  private val activeAllocations: ZIO[DynamicServer, Nothing, Unit] = for {
+  private val activeAllocations: ZIO[DynamicServer, Nothing, Assert] = for {
     alloc <- DynamicServer.getStart.map(_.allocator.get)
     ah    <- getActiveHeapBuffers(alloc)
     ad    <- getActiveDirectBuffers(alloc)
+  } yield {
+    Console.println(s"Active heap buffers: $ah, Active direct buffers: $ad")
+    assertTrue(ah + ad == 0L)
+  }
 
-  } yield Console.println(s"Active heap buffers: $ah, Active direct buffers: $ad")
   private val app = serve { nonZIO ++ staticApp ++ DynamicServer.app }.ensuringFirst(activeAllocations)
 
   def dynamicAppSpec = suite("DynamicAppSpec") {
