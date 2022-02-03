@@ -12,7 +12,7 @@ import zhttp.service.server.content.handlers.ServerResponseHandler
 import zio.{ZManaged, _}
 
 import java.net.{InetAddress, InetSocketAddress}
-import scala.jdk.CollectionConverters.CollectionHasAsScala
+import scala.jdk.CollectionConverters._
 
 sealed trait Server[-R, +E] { self =>
 
