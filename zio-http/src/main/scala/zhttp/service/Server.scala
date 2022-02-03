@@ -138,7 +138,7 @@ object Server {
     app: HttpApp[R, E] = Http.empty,
     address: InetSocketAddress = new InetSocketAddress(8080),
     acceptContinue: Boolean = false,
-    keepAlive: Boolean = false,
+    keepAlive: Boolean = true,
     consolidateFlush: Boolean = false,
     allocator: PooledByteBufAllocator = PooledByteBufAllocator.DEFAULT,
     flowControl: Boolean = true,
@@ -196,7 +196,7 @@ object Server {
   val simpleLeakDetection: UServer   = LeakDetection(LeakDetectionLevel.SIMPLE)
   val advancedLeakDetection: UServer = LeakDetection(LeakDetectionLevel.ADVANCED)
   val paranoidLeakDetection: UServer = LeakDetection(LeakDetectionLevel.PARANOID)
-  val keepAlive: UServer             = KeepAlive(true)
+  val disableKeepAlive: UServer      = Server.KeepAlive(false)
   val consolidateFlush: UServer      = ConsolidateFlush(true)
 
   /**
