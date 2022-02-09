@@ -1,5 +1,19 @@
 # HttpData
-`HttpData` is a domain to model the content that needs to be written in HttpChannel. `HttpRequest` and `HttpResponse` store data or content as `ByteBuf`. `HttpData` helps you decode and encode this content into simpler, easier to use data types while creating a Request or Response for ZIO HTTP.
+`HttpData` is a domain to model the content that is to be written in HttpChannel. `HttpRequest` and `HttpResponse` store content as `ByteBuf`. `HttpData` helps you decode and encode this content into simpler, easier to use data types while creating a Request or Response for ZIO HTTP.
+## Server-side usage of `HttpData`
+On the server-side, `ZIO-HTTP` is adding `HttpData.Empty` as the pre-defined data to the `Response`. You may replace it with another `HttpData`.
+
+To attach data to a response you can use the `Response` constructors.
+```scala
+  val res: Response = Response( data = HttpData.fromString("Some String"))
+```
+## Client-side usage of `HttpData`
+On the client-side, `ZIO-HTTP` is adding `HttpData.Empty` as the pre-defined data to the `Request`. You may replace it with another `HttpData`.
+
+To attach data to a request you can use the `Response` constructors.
+```scala
+  val req: Request = Request(data = HttpData.fromString("Some String"))
+```
 ## Creating an HttpData
 `HttpData` can be created using a lot of constructors.
 ### Creating an empty HttpData
